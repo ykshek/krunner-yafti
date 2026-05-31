@@ -1,0 +1,33 @@
+#pragma once
+
+#include <QString>
+#include <QStringList>
+#include <QVariantMap>
+#include <QDBusInterface>
+#include <functional>
+#include <memory>
+
+struct AppSuggestion {
+    QString id;
+    QString name;
+    QString description;
+    QString iconName;
+};
+
+class YaftiClient {
+public:
+    YaftiClient();
+
+    bool isConnected() const;
+    QString lastError() const;
+
+    QList<AppSuggestion> search(const QString &term, const std::function<bool()> &isContextValid = nullptr);
+    bool activateResult(const QString &actionId, const QStringList &searchTerms);
+
+private:
+    std::unique_ptr<QDBusInterface> m_yaftiInterface;
+    QString m_lastError;
+
+    QStringList getInitialResultSet(const QStringList &terms);
+    QList<QVariantMap> getResultMetas(const QStringList &resultIds);
+};

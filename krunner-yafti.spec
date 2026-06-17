@@ -1,0 +1,62 @@
+Name:           krunner-yafti
+Version:        %{?version}%{!?version:0.0.1}
+Release:        1%{?dist}
+Summary:        KDE KRunner plugin for Bazzite Portal Actions via Yafti
+
+License:        Apache-2.0
+URL:            https://github.com/ublue-os/krunner-yafti
+Source0:        %{name}-%{version}.tar.gz
+
+BuildRequires:  cmake
+BuildRequires:  gcc-c++
+BuildRequires:  extra-cmake-modules
+BuildRequires:  kf6-kconfig-devel
+BuildRequires:  kf6-krunner-devel
+BuildRequires:  kf6-ki18n-devel
+BuildRequires:  kf6-kcoreaddons-devel
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  kf6-rpm-macros
+BuildRequires:  gettext
+BuildRequires:  yaml-cpp-devel
+
+Requires:       kf6-krunner
+Requires:       qt6-qtbase
+Requires:       yaml-cpp
+
+%description
+A KDE KRunner plugin that integrates with Yafti (Bazzite Portal).
+This plugin reads configurations from /usr/share/yafti.yml and allows users
+to search for portal actions directly from KRunner, launching them
+via the yafti_gtk.py script.
+
+%package        tools
+Summary:        CLI tools for %{name}
+Requires:       %{name} = %{version}-%{release}
+
+%description    tools
+Command-line tools for testing and debugging the krunner-yafti plugin.
+
+%prep
+%autosetup -n %{name}-%{version}
+
+%build
+%cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%cmake_build
+
+%install
+%cmake_install
+
+%check
+# Basic smoke test - check if the plugin file was created
+test -f %{buildroot}%{_kf6_plugindir}/krunner/yaftirunner.so
+
+%files
+%license LICENSE
+%doc README.md
+%{_kf6_plugindir}/krunner/yaftirunner.so
+
+%changelog
+* Wed Jun 17 2026 Alex Shek <hms.starryfish@gmail.com> - 0.0.1-1
+- Initial RPM package for krunner-yafti.

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=Plasma/Runner
+X-KDE-PluginInfo-Name=yafti
+X-KDE-PluginInfo-Category=Utilities
+X-KDE-PluginInfo-EnabledByDefault=true
+Name=Bazzite Portal Actions
+Comment=Search and launch actions from Bazzite Portal
+Icon=applications-system

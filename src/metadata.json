@@ -1,5 +1,7 @@
 {
     "KPlugin": {
+        "Id": "yafti",
+        "Name": "Bazzite Portal Actions",
         "Authors": [
             {
                 "Email": "hms.starryfish@gmail.com",
@@ -10,7 +12,6 @@
         "EnabledByDefault": true,
         "Icon": "io.github.ublue_os.yafti_gtk",
         "License": "Apache-2.0",
-        "Name": "Bazzite Portal",
         "Version": "0.0.1",
         "Website": "https://github.com/ublue-os/krunner-yafti"
     }

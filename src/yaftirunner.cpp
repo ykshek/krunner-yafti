@@ -72,11 +72,16 @@ void YaftiRunner::match(KRunner::RunnerContext &context)
     }
 }
 
-void YaftiRunner::run(const KRunner::RunnerContext &context, const KRunner::QueryMatch &match)
+void YaftiRunner::run(const KRunner::RunnerContext &/*context*/, const KRunner::QueryMatch &match)
 {
     QString actionId = match.id();
     if (actionId.isEmpty())
         return;
+
+    // Remove the prefix "krunner-yafti_" if it exists
+    if (actionId.startsWith(QStringLiteral("krunner-yafti_"))) {
+        actionId.remove(0, 14); // 14 is the length of "krunner-yafti_"
+    }
 
     // Build command: launch yafti_gtk.py with the config file and the action ID
     QString scriptPath = QStringLiteral("/usr/bin/yafti_gtk.py");

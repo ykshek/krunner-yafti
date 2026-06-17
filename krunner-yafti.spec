@@ -50,12 +50,12 @@ Command-line tools for testing and debugging the krunner-yafti plugin.
 
 %check
 # Basic smoke test - check if the plugin file was created
-test -f %{buildroot}%{_kf6_plugindir}/krunner/yaftirunner.so
+test -f %{buildroot}%{_kf6_plugindir}/krunner/krunner-yafti.so
 
 %files
 %license LICENSE
 %doc README.md
-%{_kf6_plugindir}/krunner/yaftirunner.so
+%{_kf6_plugindir}/krunner/krunner-yafti.so
 
 %changelog
 * Wed Jun 17 2026 Alex Shek <hms.starryfish@gmail.com> - 0.0.1-1

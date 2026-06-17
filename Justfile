@@ -116,19 +116,19 @@ bump-version version:
         exit 1
     fi
 
-    # Update version in yaftirunner.json
-    echo "Updating version in src/yaftirunner.json..."
-    sed -i "s/\"Version\": \"[^\"]*\"/\"Version\": \"$VERSION\"/" src/yaftirunner.json
+    # Update version in metadata.json
+    echo "Updating version in src/metadata.json..."
+    sed -i "s/\"Version\": \"[^\"]*\"/\"Version\": \"$VERSION\"/" src/metadata.json
 
     # Verify the change was made
-    if ! grep -q "\"Version\": \"$VERSION\"" src/yaftirunner.json; then
-        echo "Error: Failed to update version in yaftirunner.json"
+    if ! grep -q "\"Version\": \"$VERSION\"" src/metadata.json; then
+        echo "Error: Failed to update version in metadata.json"
         exit 1
     fi
 
-    echo "Version updated successfully in yaftirunner.json"
-    git diff src/yaftirunner.json
-    git add src/yaftirunner.json
+    echo "Version updated successfully in metadata.json"
+    git diff src/metadata.json
+    git add src/metadata.json
     git commit -m "chore: bump version to v$VERSION"
     git push origin HEAD
 

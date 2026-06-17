@@ -1,11 +1,11 @@
 Name:           krunner-yafti
-Version:        %{?version}%{!?version:0.0.1}
+Version:        %{?version}%{!?version:1.0.0}
 Release:        1%{?dist}
 Summary:        KDE KRunner plugin for Bazzite Portal Actions via Yafti
 
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/krunner-yafti
-Source0:        %{name}-%{version}.tar.gz
+Source0:        https://github.com/ykshek/krunner-yafti/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -58,5 +58,5 @@ test -f %{buildroot}%{_kf6_plugindir}/krunner/krunner-yafti.so
 %{_kf6_plugindir}/krunner/krunner-yafti.so
 
 %changelog
-* Wed Jun 17 2026 Alex Shek <hms.starryfish@gmail.com> - 0.0.1-1
+* Wed Jun 17 2026 Alex Shek <hms.starryfish@gmail.com> - 1.0.0-1
 - Initial RPM package for krunner-yafti.

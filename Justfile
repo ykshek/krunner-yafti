@@ -60,7 +60,7 @@ rpm: build-container
     #!/usr/bin/env bash
     set -euo pipefail
     # Get project version from CMakeLists.txt or use default
-    VERSION=${VERSION:-1.0.0}
+    VERSION=$(grep '"Version":' src/metadata.json | sed -E 's/.*"Version": "([^"]+)".*/\1/' || echo "1.0.0")
 
     # Create RPM build structure
     mkdir -p rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
@@ -120,16 +120,48 @@ bump-version version:
     echo "Updating version in src/metadata.json..."
     sed -i "s/\"Version\": \"[^\"]*\"/\"Version\": \"$VERSION\"/" src/metadata.json
 
-    # Verify the change was made
+    # Update the version in krunner-yafti.spec
+    echo "Updating version in krunner-yafti.spec..."
+    sed -i "s/^Version:.*/Version:        $VERSION/" krunner-yafti.spec
+
+    # Verify the change was made in metadata.json
     if ! grep -q "\"Version\": \"$VERSION\"" src/metadata.json; then
         echo "Error: Failed to update version in metadata.json"
         exit 1
     fi
 
+    # Verify the change was made in krunner-yafti.spec
+    if ! grep -q "^Version:[[:space:]]*$VERSION" krunner-yafti.spec; then
+        echo "Error: Failed to update version in krunner-yafti.spec"
+        exit 1
+    fi
+
     echo "Version updated successfully in metadata.json"
-    git diff src/metadata.json
-    git add src/metadata.json
+    git diff src/metadata.json krunner-yafti.spec
+    git add src/metadata.json krunner-yafti.spec
     git commit -m "chore: bump version to v$VERSION"
+
+commit version:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    VERSION="{{version}}"
+
+    # Validate version format (should be like 1.2.3)
+    if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+        echo "Error: Version must be in format X.Y.Z (e.g., 1.2.3)"
+        exit 1
+    fi
+
+    echo "Bumping version to $VERSION..."
+
+    # Check if working directory is clean
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "Error: Working directory is not clean. Please commit or stash changes first."
+        git status --porcelain
+        exit 1
+    fi
+
     git push origin HEAD
 
     git tag "v$VERSION"

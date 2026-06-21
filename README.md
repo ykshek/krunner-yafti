@@ -27,9 +27,13 @@ Haven't gotten around to it yet.
 
 ### Release Process
 
-Create and push a version tag:
+Create a version tag:
 ```bash
 just bump-version 1.x.x
+```
+Verify, add the appropriate tag and push the change:
+```bash
+just commit 1.x.x
 ```
 GitHub Actions will hopefully automatically:
 

@@ -1,11 +1,11 @@
 Name:           krunner-yafti
-Version:        %{?version}%{!?version:1.0.0}
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        KDE KRunner plugin for Bazzite Portal Actions via Yafti
 
 License:        Apache-2.0
-URL:            https://github.com/ublue-os/krunner-yafti
-Source0:        https://github.com/ykshek/krunner-yafti/archive/refs/tags/v%{version}.tar.gz
+URL:            https://github.com/ykshek/krunner-yafti
+Source0:        v%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -25,7 +25,7 @@ Requires:       yaml-cpp
 
 %description
 A KDE KRunner plugin that integrates with Yafti (Bazzite Portal).
-This plugin reads configurations from /usr/share/yafti.yml and allows users
+This plugin reads configurations from /usr/share/yafti/yafti.yml and allows users
 to search for portal actions directly from KRunner, launching them
 via the yafti_gtk.py script.
 

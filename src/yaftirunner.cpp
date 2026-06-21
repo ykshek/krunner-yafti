@@ -71,7 +71,7 @@ void YaftiRunner::match(KRunner::RunnerContext &context)
         match.setId(act.id);
         match.setText(act.title);
         match.setSubtext(act.description + QStringLiteral(" (") + act.screenTitle + QStringLiteral(")"));
-        match.setIconName(QStringLiteral("applications-system"));
+        match.setIconName(QStringLiteral("io.github.ublue_os.yafti_gtk"));
         if (isTitleMatch) {
             const double relevance = 0.85 - (titleMatches * 0.005);
             match.setRelevance(qMax(relevance, 0.7));

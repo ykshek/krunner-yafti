@@ -34,9 +34,15 @@ void YaftiRunner::loadActions()
         if (!config["screens"]) return;
 
         for (const auto &screenNode : config["screens"]) {
+            if (screenNode["hidden"] && screenNode["hidden"].as<bool>(false)) {
+                continue;
+            }
             QString screenTitle = QString::fromStdString(screenNode["title"].as<std::string>(""));
             if (!screenNode["actions"]) continue;
             for (const auto &actionNode : screenNode["actions"]) {
+                if (actionNode["hidden"] && actionNode["hidden"].as<bool>(false)) {
+                    continue;
+                }
                 Action act;
                 act.id = QString::fromStdString(actionNode["id"].as<std::string>(""));
                 act.title = QString::fromStdString(actionNode["title"].as<std::string>(""));

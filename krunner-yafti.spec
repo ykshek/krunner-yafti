@@ -37,7 +37,7 @@ Requires:       %{name} = %{version}-%{release}
 Command-line tools for testing and debugging the krunner-yafti plugin.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n v%{version}
 
 %build
 %cmake \
@@ -58,5 +58,8 @@ test -f %{buildroot}%{_kf6_plugindir}/krunner/krunner-yafti.so
 %{_kf6_plugindir}/krunner/krunner-yafti.so
 
 %changelog
+* Sun Jun 21 2026 Alex Shek <hms.starryfish@gmail.com> - 1.0.1-1
+- Update for 1.0.1.
+
 * Wed Jun 17 2026 Alex Shek <hms.starryfish@gmail.com> - 1.0.0-1
 - Initial RPM package for krunner-yafti.

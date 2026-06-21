@@ -55,7 +55,7 @@ jobs:
 
     - name: Create source tarball
       run: |
-        git archive --format=tar.gz --prefix=krunner-yafti-${{ steps.vars.outputs.version }}/ HEAD > rpmbuild/SOURCES/krunner-yafti-${{ steps.vars.outputs.version }}.tar.gz
+        git archive --format=tar.gz --prefix=v${{ steps.vars.outputs.version }}/ HEAD > rpmbuild/SOURCES/v${{ steps.vars.outputs.version }}.tar.gz
 
     - name: Copy spec file
       run: |

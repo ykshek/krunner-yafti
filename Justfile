@@ -69,8 +69,8 @@ rpm: build-container
     echo "Creating source tarball..."
     #git archive --format=tar.gz --prefix=krunner-yafti-${VERSION}/ HEAD > rpmbuild/SOURCES/krunner-yafti-${VERSION}.tar.gz
     tar --exclude='./rpmbuild' --exclude='./build' --exclude='./.git' \
-        -czf rpmbuild/SOURCES/krunner-yafti-${VERSION}.tar.gz \
-        --transform "s|^\.|krunner-yafti-${VERSION}|" .
+        -czf rpmbuild/SOURCES/v${VERSION}.tar.gz \
+        --transform "s|^\.|v${VERSION}|" .
 
     # Copy spec file
     cp krunner-yafti.spec rpmbuild/SPECS/

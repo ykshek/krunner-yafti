@@ -56,7 +56,7 @@ jobs:
 
         # Create source tarball with valid RPM version (no hyphens)
         VERSION=0.0.$(date +%Y%m%d%H%M%S)
-        git archive --format=tar.gz --prefix=krunner-yafti-${VERSION}/ HEAD > rpmbuild/SOURCES/krunner-yafti-${VERSION}.tar.gz
+        git archive --format=tar.gz --prefix=v${VERSION}/ HEAD > rpmbuild/SOURCES/v${VERSION}.tar.gz
 
         # Copy spec file
         cp krunner-yafti.spec rpmbuild/SPECS/

@@ -57,18 +57,32 @@ void YaftiRunner::match(KRunner::RunnerContext &context)
     if (query.isEmpty())
         return;
 
-    for (const Action &act : m_actions) {
-        if (act.title.contains(query, Qt::CaseInsensitive) ||
-            act.description.contains(query, Qt::CaseInsensitive)) {
+    int titleMatches = 0;
+    int descMatches = 0;
 
-            KRunner::QueryMatch match(this);
+    for (const Action &act : m_actions) {
+        const bool isTitleMatch = act.title.contains(query, Qt::CaseInsensitive);
+        const bool isDescMatch = act.description.contains(query, Qt::CaseInsensitive);
+        if (!isTitleMatch && !isDescMatch) {
+            continue;
+        }
+
+        KRunner::QueryMatch match(this);
         match.setId(act.id);
         match.setText(act.title);
         match.setSubtext(act.description + QStringLiteral(" (") + act.screenTitle + QStringLiteral(")"));
         match.setIconName(QStringLiteral("applications-system"));
-        match.setRelevance(0.7);
+        if (isTitleMatch) {
+            const double relevance = 0.85 - (titleMatches * 0.005);
+            match.setRelevance(qMax(relevance, 0.7));
+            titleMatches++;
+        }
+        if (isDescMatch) {
+            const double relevance = 0.55 - (descMatches * 0.005);
+            match.setRelevance(qMax(relevance, 0.3));
+            descMatches++;
+        }
         context.addMatch(match);
-            }
     }
 }
 

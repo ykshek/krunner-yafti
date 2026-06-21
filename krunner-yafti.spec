@@ -1,5 +1,5 @@
 Name:           krunner-yafti
-Version:        1.0.0
+Version:        1.0.1
 Release:        1%{?dist}
 Summary:        KDE KRunner plugin for Bazzite Portal Actions via Yafti
 

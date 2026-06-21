@@ -58,6 +58,9 @@ test -f %{buildroot}%{_kf6_plugindir}/krunner/krunner-yafti.so
 %{_kf6_plugindir}/krunner/krunner-yafti.so
 
 %changelog
+* Sun Jun 21 2026 Alex Shek <hms.starryfish@gmail.com> - 1.0.3-1
+- Update for 1.0.3.
+
 * Sun Jun 21 2026 Alex Shek <hms.starryfish@gmail.com> - 1.0.2-1
 - Update for 1.0.2.
 

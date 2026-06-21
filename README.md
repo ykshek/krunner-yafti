@@ -1,9 +1,9 @@
 # KRunner Yafti Plugin
 
-This is basically 50% copied from [Krunner-Bazaar](https://github.com/bazaar-org/krunner-bazaar/) and 50% vibe coded.
-~~Either someone comes along and take a good look at it or I try to comprehend what is happening bit by bit before this goes on anything.~~ After a good hour of staring at the code, I feel like I have a good idea of what is going on. Any review of the code is still welcome!
+This is basically 50% copied from [Krunner-Bazaar](https://github.com/bazaar-org/krunner-bazaar/), 25% vibe coded(though each change has been validated manually now), and 25% mashing my head against the keyboard trying to make it build.
+~~Either someone comes along and take a good look at it or I try to comprehend what is happening bit by bit before this goes on anything.~~ After a good couple of hours of staring, tweaking, and chugging away at the code, I feel like I have a good idea of what is going on. Any review of the code is still welcome!
 
-I am also not sure about the ownership about the files(i.e. whether they should be left with their original owner, re-author with my name, and/or add co-authored by LLM). For now I've edited them to be under my name, but I am happy to change whatever needs to be changed.
+I am also not sure about the ownership about the files(i.e. whether they should be left with their original author). For now I've set myself as code author, but I am happy to change whatever needs to be changed.
 
 ## Installation
 

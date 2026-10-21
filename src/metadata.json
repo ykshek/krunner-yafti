@@ -10,7 +10,7 @@
         ],
         "Description": "Search for actions in Bazzite Portal",
         "EnabledByDefault": true,
-        "Icon": "io.github.ublue_os.yafti_gtk",
+        "Icon": "io.github.Xarishark.bazzite_portal",
         "License": "Apache-2.0",
         "Version": "1.0.3",
         "Website": "https://github.com/ublue-os/krunner-yafti"

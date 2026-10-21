@@ -23,7 +23,7 @@ YaftiRunner::~YaftiRunner() = default;
 
 void YaftiRunner::loadActions()
 {
-    const QString yamlPath = QStringLiteral("/usr/share/yafti/yafti.yml");
+    const QString yamlPath = QStringLiteral("/usr/share/bazzite-portal/tools.yml");
     if (!QFile::exists(yamlPath)) {
         qWarning() << "Yafti config not found:" << yamlPath;
         return;
@@ -77,7 +77,7 @@ void YaftiRunner::match(KRunner::RunnerContext &context)
         match.setId(act.id);
         match.setText(act.title);
         match.setSubtext(act.screenTitle);
-        match.setIconName(QStringLiteral("io.github.ublue_os.yafti_gtk"));
+        match.setIconName(QStringLiteral("io.github.Xarishark.bazzite_portal"));
         if (isTitleMatch) {
             const double relevance = 0.85 - (titleMatches * 0.005);
             match.setRelevance(qMax(relevance, 0.7));
@@ -103,24 +103,24 @@ void YaftiRunner::run(const KRunner::RunnerContext &/*context*/, const KRunner::
         actionId.remove(0, 14); // 14 is the length of "krunner-yafti_"
     }
 
-    // Build command: launch yafti_gtk.py with the config file and the action ID
-    QString scriptPath = QStringLiteral("/usr/bin/yafti_gtk.py");
+    // Launch Bazzite Portal with the catalog and selected action ID.
+    QString scriptPath = QStringLiteral("/usr/bin/bazzite-portal");
     // If not there, try to find it in PATH or fallback to current dir
     if (!QFile::exists(scriptPath)) {
         // Try to locate via which
-        const QString which = QStandardPaths::findExecutable(QStringLiteral("yafti_gtk.py"));
+        const QString which = QStandardPaths::findExecutable(QStringLiteral("bazzite-portal"));
         if (!which.isEmpty())
             scriptPath = which;
         else {
-            qWarning() << "yafti_gtk.py not found";
+            qWarning() << "bazzite-portal not found";
             return;
         }
     }
 
     QStringList args;
-    args << QStringLiteral("/usr/share/yafti/yafti.yml") << QStringLiteral("--action-id") << actionId;
+    args << QStringLiteral("/usr/share/bazzite-portal/tools.yml") << QStringLiteral("--action-id") << actionId;
 
-    // Launch the Python script as a detached process
+    // Launch Portal as a detached process
     QProcess::startDetached(scriptPath, args);
 }
 

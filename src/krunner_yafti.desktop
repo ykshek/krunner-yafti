@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=Search and launch actions from Bazzite Portal
-Icon=io.github.ublue_os.yafti_gtk
+Icon=io.github.Xarishark.bazzite_portal
 Name=Bazzite Portal Actions
 Type=Service
 X-KDE-PluginInfo-Category=Utilities
